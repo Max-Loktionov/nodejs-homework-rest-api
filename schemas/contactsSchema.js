@@ -4,7 +4,7 @@ const contactsSchema = Joi.object({
   name: Joi.string().trim().required(),
   email: Joi.string()
     .trim()
-    .regex(/\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/)
+    .regex(/\b[\w.-]+@[\w.-]+\.\w{2,4}\b/)
     .required()
     .messages({
       "string.base": `email should be a type of string`,
