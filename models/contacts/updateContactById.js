@@ -1,7 +1,5 @@
-const fs = require("fs/promises");
-
 const listContacts = require("./listContacts");
-const contactsPath = require("./contactsPath");
+const updateList = require("./updateList");
 
 async function updateContactById(id, { name, email, phone }) {
   try {
@@ -12,7 +10,7 @@ async function updateContactById(id, { name, email, phone }) {
       return null;
     }
     contacts[idx] = { id, ...data };
-    await fs.writeFile(contactsPath, JSON.stringify(contacts), null, "\t");
+    await updateList(contacts);
     return contacts[idx];
   } catch (error) {
     console.log(error);
