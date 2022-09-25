@@ -17,22 +17,22 @@ Routes: built REST API architecture using POST methods;
 ---
 
 ```bash
-`npm start`
+npm start
 ```
 
--           start the server in mode production;
+- start the server in mode production;
 
 ```bash
 `npm run start:dev`
 ```
 
--        start the server in mode development;
+- start the server in mode development;
 
 ```bash
 `npm run lint`
 ```
 
--        run code validation from eslint. It is necessary to perform before each PR and correct all errors of the linter;
+- run code validation from eslint. It is necessary to perform before each PR and correct all errors of the linter;
 
 ```bash
 `npm lint:fix`
