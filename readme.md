@@ -14,16 +14,35 @@ Routes: built REST API architecture using POST methods;
 
 ### Commands:
 
+---
+
 ```bash
-npm start
+`npm start`
 ```
 
-- `npm start` start the server in mode production;
-- `npm run start:dev` start the server in mode development;
-- `npm run lint` run code validation from eslint. It is necessary to perform before each PR and correct all errors of the linter;
-- `npm lint:fix` run code validation from eslint, but with automatic fixes of simple errors.
+-           start the server in mode production;
+
+```bash
+`npm run start:dev`
+```
+
+-        start the server in mode development;
+
+```bash
+`npm run lint`
+```
+
+-        run code validation from eslint. It is necessary to perform before each PR and correct all errors of the linter;
+
+```bash
+`npm lint:fix`
+```
+
+- run code validation from eslint, but with automatic fixes of simple errors.
 
 ### Branches:
+
+---
 
 - 'main' -- it contains last version of app;
 
@@ -32,6 +51,8 @@ npm start
 - '03-mongodb' -- contains configuration for connection to mongoDB, use mongoose for CRUD operations.
 
 ### API
+
+---
 
 some action with data
 | action | method mongoose | |
