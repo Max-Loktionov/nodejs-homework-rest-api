@@ -10,7 +10,7 @@ A web-app is created with Node.js application using MVC. The next modules are cr
 
 **Controllers**: functions of interaction with the DB entities (CRUD);
 
-**Routes**: build REST API architecture using POST methods;
+**Routes**: build REST API architecture using CRUD-methods;
 
 ### Commands:
 
@@ -54,12 +54,17 @@ npm lint:fix
 
 ---
 
-some action with data
-| action | method mongoose | |
-| ------------- |:------------------:| -----:|
-| getAll | find | 00 |
-| getById | findById | 01 |
-| add | create | 02 |
-| updateById | findByIdAndUpdate | 03 |
-| updateFavoriteById | findByIdAndUpdate | 04 |
-| removeById | findByIdAndDelete | 05 |
+**Use api on routes: /api/contacts**
+/api/contacts/contactId
+/api/contacts/contactId/favorite
+
+some action with data:
+
+| action             |  method mongoose  | route                            |     |
+| ------------------ | :---------------: | -------------------------------- | --: |
+| getAll             |       find        | /api/contacts                    |  00 |
+| getById            |     findById      | /api/contacts/contactId          |  01 |
+| add                |      create       | /api/contacts                    |  02 |
+| updateById         | findByIdAndUpdate | /api/contacts/contactId          |  03 |
+| updateFavoriteById | findByIdAndUpdate | /api/contacts/contactId/favorite |  04 |
+| removeById         | findByIdAndDelete | /api/contacts/contactId          |  05 |
