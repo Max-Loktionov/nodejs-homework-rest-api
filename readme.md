@@ -1,31 +1,70 @@
-## GoIT Node.js Course Template Homework
+## GoIT Node.js Course Homework
 
-Виконайте форк цього репозиторію для виконання домашніх завдань (2-6)
-Форк створить репозиторій на вашому http://github.com
+This is an educational project from the course Node.js for GoIT-school.
 
-Додайте ментора до колаборації
+A web-app is created with Node.js application using MVC. The next modules are created:
 
-Для кожної домашньої роботи створюйте свою гілку.
+**Server** : contains main app file with base configurations - contains configuration of PORT and connection to DB;
 
-- hw02
-- hw03
-- hw04
-- hw05
-- hw06
+**Models**: contains models of DB entities in MongoDB - contact, includes contactSchema and joiSchema (validation schemes for validate the data from front);
 
-Кожна нова гілка для др повинна робитися з master
+**Controllers**: functions of interaction with the DB entities (CRUD);
 
-Після того, як ви закінчили виконувати домашнє завдання у своїй гілці, необхідно зробити пулл-реквест (PR). Потім додати ментора для рев'ю коду. Тільки після того, як ментор заапрувить PR, ви можете виконати мердж гілки з домашнім завданням у майстер.
+**Routes**: build REST API architecture using CRUD-methods;
 
-Уважно читайте коментарі ментора. Виправте зауваження та зробіть коміт у гілці з домашнім завданням. Зміни підтягнуться у PR автоматично після того, як ви відправите коміт з виправленнями на github
-Після виправлення знову додайте ментора на рев'ю коду.
+### Commands:
 
-- При здачі домашньої роботи є посилання на PR
-- JS-код чистий та зрозумілий, для форматування використовується Prettier
+---
 
-### Команди:
+```bash
+npm start
+```
 
-- `npm start` &mdash; старт сервера в режимі production
-- `npm run start:dev` &mdash; старт сервера в режимі розробки (development)
-- `npm run lint` &mdash; запустити виконання перевірки коду з eslint, необхідно виконувати перед кожним PR та виправляти всі помилки лінтера
-- `npm lint:fix` &mdash; та ж перевірка лінтера, але з автоматичними виправленнями простих помилок
+- start the server in mode production;
+
+```bash
+npm run start:dev
+```
+
+- start the server in mode development;
+
+```bash
+npm run lint
+```
+
+- run code validation from eslint. It is necessary to perform before each PR and correct all errors of the linter;
+
+```bash
+npm lint:fix
+```
+
+- run code validation from eslint, but with automatic fixes of simple errors.
+
+### Branches:
+
+---
+
+- 'main' -- it contains last version of app;
+
+- 'hw-02-express' -- use file contacts.json for storage data and express for run server;
+
+- '03-mongodb' -- contains configuration for connection to mongoDB, use mongoose for CRUD operations.
+
+### API:
+
+---
+
+**Use api on routes: /api/contacts**
+/api/contacts/contactId
+/api/contacts/contactId/favorite
+
+some action with data:
+
+| action             |  method mongoose  | route                            |     |
+| ------------------ | :---------------: | -------------------------------- | --: |
+| getAll             |       find        | /api/contacts                    |  00 |
+| getById            |     findById      | /api/contacts/contactId          |  01 |
+| add                |      create       | /api/contacts                    |  02 |
+| updateById         | findByIdAndUpdate | /api/contacts/contactId          |  03 |
+| updateFavoriteById | findByIdAndUpdate | /api/contacts/contactId/favorite |  04 |
+| removeById         | findByIdAndDelete | /api/contacts/contactId          |  05 |
