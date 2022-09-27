@@ -1,11 +1,23 @@
-// const validationUnique = (req, res, next) => {
-//   if (error.name === "MongoServerError" && error.code === 11000) {
-//     next(new Error("There was a duplicate key error"));
-//   } else {
-//     next();
-//   }
-//   next();
-// };
+const isConflict = ({ name, code }) =>
+  name === "MongoServerError" && code === 11000;
 
-// console.log("error val", req.body);
-// module.exports = validationUnique;
+const validationUnique = (error, data, next) => {
+  error.status = isConflict(error) ? 409 : 400;
+
+  if (err.status === 409) {
+    const { status, keyValue } = err;
+    res.status(status).json({
+      status: "error",
+      code: 409,
+      message: `There was a duplicate keyValue ${
+        keyValue.name || keyValue.phone
+      }`,
+    });
+  } else {
+    next();
+  }
+
+  next();
+};
+
+module.exports = validationUnique;

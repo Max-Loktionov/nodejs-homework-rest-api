@@ -20,17 +20,6 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  if (err.name === "MongoServerError" && err.code === 11000) {
-    const { status = 400, keyValue } = err;
-    res.status(status).json({
-      status: "error",
-      message: `There was a duplicate keyValue ${
-        keyValue.name || keyValue.phone
-      }`,
-    });
-  } else {
-    next();
-  }
   const { status = 500, message = "Server error" } = err;
   res.status(status).json({ message });
 });
