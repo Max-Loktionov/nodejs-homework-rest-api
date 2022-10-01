@@ -85,16 +85,8 @@ some action with data:
 | logout             |                   | post/api/users/logout                 |     |
 | current            |                   | get/api/users/current                 |  08 |
 
-| route           | response |
-| --------------- | -------- |
-| PATCH/api/users | {        |
-
-"status": "success",
-"code": "200",
-"data": {
-"email": "max2@company.com",
-"subscription": "business"
-}
-}|
+| route           | response                                                                                               |
+| --------------- | ------------------------------------------------------------------------------------------------------ |
+| PATCH/api/users | { "status": "success","code": "200","data": { "email": "max2@company.com","subscription": "business"}} |
 
 **Pagination **
