@@ -85,11 +85,10 @@ some action with data:
 | logout             |                   | post/api/users/logout                 |     |
 | current            |                   | get/api/users/current                 |  08 |
 
-| route                 | response                                                                                                                |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| patch/api/users       | status:200; body={ "status": "success","code": "200","data": { "email": "max2@company.com","subscription": "business"}} |
-| get/api/users/current | status:200; body={"status":"success","code":"200","data":{"email":"max2@company.com","subscription":"business"}}        |
-
-|post/api/users/logout | status:204; empty body |
-|post/api/users/register | status:201; body = {"status":"success","code":201,"user":{"email":"max7@company.com","subscription":"starter"}} |
-| |{"status":"success","code":200,"response":{"token":"x...x","user":{"email":"user@user.com","subscription":""}}} |
+| route                   | response                                                                                                                |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| patch/api/users         | status:200; body={ "status": "success","code": "200","data": { "email": "max2@company.com","subscription": "business"}} |
+| get/api/users/current   | status:200; body={"status":"success","code":"200","data":{"email":"max2@company.com","subscription":"business"}}        |
+| post/api/users/logout   | status:204; empty body                                                                                                  |
+| post/api/users/register | status:201; body = {"status":"success","code":201,"user":{"email":"max7@company.com","subscription":"starter"}}         |
+|                         | {"status":"success","code":200,"response":{"token":"x...x","user":{"email":"user@user.com","subscription":""}}}         |
