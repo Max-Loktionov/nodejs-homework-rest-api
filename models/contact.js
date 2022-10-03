@@ -55,7 +55,9 @@ const joiSchema = Joi.object({
 contactSchema.post("save", checkUnique);
 
 const favoriteJoiSchema = Joi.object({
-  favorite: Joi.bool().required(),
+  favorite: Joi.bool().required().messages({
+    "any.required": `missing field favorite`,
+  }),
 });
 
 const Contact = model("contact", contactSchema);

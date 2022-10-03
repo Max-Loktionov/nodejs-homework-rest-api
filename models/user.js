@@ -3,12 +3,16 @@ const Joi = require("joi");
 const bcrypt = require("bcryptjs");
 
 const emailRegex = /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/;
+const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,24}/;
+const passwordMessage =
+  "Passwords must contain: а minimum of 1 lower case letter [a-z] and a minimum of 1 upper case letter [A-Z] and a minimum of 1 numeric character [0-9], and min length 8 characters.";
 
 const userSchema = Schema(
   {
     password: {
       type: String,
-      required: [true, "Set password for user"], // TODO: make regex
+      match: passwordRegex,
+      required: [true, "Set password for user"],
     },
     email: {
       type: String,
@@ -31,14 +35,18 @@ userSchema.methods.setPassword = function (password) {
 };
 
 const joiRegisterSchema = Joi.object({
-  password: Joi.string().trim().min(6).required().messages({
-    "string.empty": `password must contain value`,
-    "string.pattern.base": `"" must includes `, // TODO: make message for regex
-  }),
+  password: Joi.string()
+    .trim()
+    .regex(passwordRegex)
+    .required()
+    .messages({
+      "string.empty": `password must contain value`,
+      "string.pattern.base": `${passwordMessage}`,
+    }),
   email: Joi.string().trim().regex(emailRegex).required().messages({
     "string.base": `email should be a type of string`,
     "string.empty": `email must contain value`,
-    "string.pattern.base": `"" must be xxx@xxx.yyy `,
+    "string.pattern.base": `email must be xxx@xxx.yyy `,
   }),
   subscription: Joi.string().valid("starter", "pro", "business"),
 });

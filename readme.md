@@ -62,13 +62,6 @@ npm lint:fix
 - get/api/contacts/contactId
 - put/api/contacts/contactId/favorite
 
-  **Use api on routes: /api/users **
-
-- post/api/users/register
-- post/api/users/login
-- post/api/users/logout
-- get/api/users/current
-
 some action with data:
 
 | action             |  method mongoose  | route                                 |     |
@@ -82,13 +75,19 @@ some action with data:
 |                    |                   |                                       |     |
 | register           |       save        | post/api/users/register               |  06 |
 | login              | findByIdAndUpdate | post/api/users/login                  |  07 |
-| logout             |                   | post/api/users/logout                 |     |
-| current            |                   | get/api/users/current                 |  08 |
 
-| route                   | response                                                                                                                |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| patch/api/users         | status:200; body={ "status": "success","code": "200","data": { "email": "max2@company.com","subscription": "business"}} |
-| get/api/users/current   | status:200; body={"status":"success","code":"200","data":{"email":"max2@company.com","subscription":"business"}}        |
-| post/api/users/logout   | status:204; empty body                                                                                                  |
-| post/api/users/register | status:201; body = {"status":"success","code":201,"user":{"email":"max7@company.com","subscription":"starter"}}         |
-|                         | {"status":"success","code":200,"response":{"token":"x...x","user":{"email":"user@user.com","subscription":""}}}         |
+**Use api on routes: /api/users **
+
+- post/api/users/register
+- post/api/users/login
+- post/api/users/logout
+- get/api/users/current
+- patch/api/users
+
+| route                   | response                                                                                                               |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| patch/api/users         | status:200; body={ "status": "success","code": "200","data": { "email": "max2@company.com","subscription": "starter"}} |
+| get/api/users/current   | status:200; body={"status":"success","code":"200","data":{"email":"max2@company.com","subscription":"starter"}}        |
+| post/api/users/logout   | status:204; empty body                                                                                                 |
+| post/api/users/register | status:201; body = {"status":"success","code":201,"user":{"email":"max7@company.com","subscription":"starter"}}        |
+| post/api/users/login    | {"status":"success","code":200,"response":{"token":"x...x","user":{"email":"user@user.com","subscription":""}}}        |
