@@ -5,8 +5,8 @@ const getCurrent = async (req, res, next) => {
     code: 200,
     response: {
       user: {
-        email: email,
-        subscription: subscription,
+        email,
+        subscription,
       },
     },
   });

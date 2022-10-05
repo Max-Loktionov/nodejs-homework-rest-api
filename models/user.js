@@ -12,8 +12,8 @@ const userSchema = Schema(
   {
     password: {
       type: String,
-      match: passwordRegex,
-      required: [true, "Set password for user"],
+      match: passwordRegex, //validation is not usefull here
+      required: [true, "Set password for user"], //validation is not usefull here
     },
     email: {
       type: String,

@@ -12,7 +12,7 @@ const handleError = function (error, data, next) {
       )
     );
   }
-  console.log("handler", " error");
+
   next();
 };
 

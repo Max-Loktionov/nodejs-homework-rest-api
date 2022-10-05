@@ -64,17 +64,17 @@ npm lint:fix
 
 some action with data:
 
-| action             |  method mongoose  | route                                 |     |
-| ------------------ | :---------------: | ------------------------------------- | --: |
-| getAll             |       find        | /api/contacts                         |  00 |
-| getById            |     findById      | /api/contacts/contactId               |  01 |
-| add                |      create       | /api/contacts                         |  02 |
-| updateById         | findByIdAndUpdate | /api/contacts/contactId               |  03 |
-| updateFavoriteById | findByIdAndUpdate | patch/api/contacts/contactId/favorite |  04 |
-| removeById         | findByIdAndDelete | delete/api/contacts/contactId         |  05 |
-|                    |                   |                                       |     |
-| register           |       save        | post/api/users/register               |  06 |
-| login              | findByIdAndUpdate | post/api/users/login                  |  07 |
+| action             | method mongoose  | route                                 |     |
+| ------------------ | :--------------: | ------------------------------------- | --: |
+| getAll             |       find       | /api/contacts                         |  00 |
+| getById            |     findOne      | /api/contacts/contactId               |  01 |
+| add                |      create      | /api/contacts                         |  02 |
+| updateById         | findOneAndUpdate | /api/contacts/contactId               |  03 |
+| updateFavoriteById | findOneAndUpdate | patch/api/contacts/contactId/favorite |  04 |
+| removeById         |  findOneDelete   | delete/api/contacts/contactId         |  05 |
+|                    |                  |                                       |     |
+| register           |      create      | post/api/users/register               |  06 |
+| login              | findOneAndUpdate | post/api/users/login                  |  07 |
 
 **Use api on routes: /api/users **
 
