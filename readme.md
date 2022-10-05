@@ -84,7 +84,7 @@ some action with data:
 - get/api/users/current
 - patch/api/users
 
-| route                   | response                                                                                                               |
+| route                   | response                                                                                                               | action                                                        |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
 | patch/api/users         | status:200; body={ "status": "success","code": "200","data": { "email": "max2@company.com","subscription": "starter"}} | update the field "subscription                                |
 | get/api/users/current   | status:200; body={"status":"success","code":"200","data":{"email":"max2@company.com","subscription":"starter"}}        | get current user                                              |
