@@ -1,11 +1,12 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
-const bcrypt = require("bcryptjs");
+
+const { handleError } = require("../helpers");
 
 const emailRegex = /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/;
 const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,24}/;
 const passwordMessage =
-  "Passwords must contain: а minimum of 1 lower case letter [a-z] and a minimum of 1 upper case letter [A-Z] and a minimum of 1 numeric character [0-9], and min length 8 characters.";
+  "Passwords must contain: at least 1 lower case letter [a-z] and 1 upper case letter [A-Z] and 1 numeric character [0-9]. min length 8 characters.";
 
 const userSchema = Schema(
   {
@@ -30,9 +31,7 @@ const userSchema = Schema(
   { versionKey: false, timestamps: true }
 );
 
-userSchema.methods.setPassword = function (password) {
-  this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-};
+userSchema.post("save", handleError);
 
 const joiRegisterSchema = Joi.object({
   password: Joi.string()

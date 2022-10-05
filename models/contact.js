@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 
-const { checkUnique } = require("../helpers");
+const { handleError } = require("../helpers");
 
 const emailRegex = /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/;
 const phoneRegex = /\(?(\d{3})?\(?-?(\d{3})-?(\d{4})/;
@@ -52,7 +52,7 @@ const joiSchema = Joi.object({
   favorite: Joi.bool(),
 });
 
-contactSchema.post("save", checkUnique);
+contactSchema.post("save", handleError);
 
 const favoriteJoiSchema = Joi.object({
   favorite: Joi.bool().required().messages({

@@ -1,9 +1,9 @@
 const ctrlWrapper = require("./ctrlWrapper");
 const RequestError = require("./RequestError");
-const checkUnique = require("./checkUnique");
+const handleError = require("./handleError");
 
 module.exports = {
   ctrlWrapper,
   RequestError,
-  checkUnique,
+  handleError,
 };

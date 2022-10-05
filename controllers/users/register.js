@@ -1,3 +1,5 @@
+const bcrypt = require("bcryptjs");
+
 const { User } = require("../../models");
 const { RequestError } = require("../../helpers");
 
@@ -7,10 +9,12 @@ const register = async (req, res, next) => {
   if (user) {
     next(RequestError(409, `Email: ${email} in use`));
   }
-  const newUser = new User({ email, subscription });
 
-  newUser.setPassword(password);
-  newUser.save();
+  if (!password) {
+    next(RequestError(400, `Password in body request undefined`));
+  }
+  const hashPassword = await bcrypt.hash(password, 10);
+  await User.create({ email, password: hashPassword });
 
   res.status(201).json({
     status: "success",

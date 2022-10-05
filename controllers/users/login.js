@@ -23,7 +23,7 @@ const login = async (req, res, next) => {
   };
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "1d" });
   await User.findByIdAndUpdate(user._id, { token });
-  console.log("user.id login", user._id);
+
   res.json({
     status: "success",
     code: 200,

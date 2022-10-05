@@ -1,16 +1,10 @@
 const { User } = require("../../models");
 
 const updateSubscription = async (req, res) => {
-  const { subscription } = req.body;
+  const { subscription, password } = req.body;
   const { _id, email } = req.user;
 
-  console.log("updateSub", _id);
-
-  const result = await User.findByIdAndUpdate(
-    _id,
-    { subscription },
-    { new: true }
-  );
+  await User.findByIdAndUpdate(_id, { subscription, password }, { new: true });
   res.json({ status: "success", code: "200", data: { email, subscription } });
 };
 

@@ -85,9 +85,16 @@ some action with data:
 - patch/api/users
 
 | route                   | response                                                                                                               |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| patch/api/users         | status:200; body={ "status": "success","code": "200","data": { "email": "max2@company.com","subscription": "starter"}} |
-| get/api/users/current   | status:200; body={"status":"success","code":"200","data":{"email":"max2@company.com","subscription":"starter"}}        |
-| post/api/users/logout   | status:204; empty body                                                                                                 |
-| post/api/users/register | status:201; body = {"status":"success","code":201,"user":{"email":"max7@company.com","subscription":"starter"}}        |
-| post/api/users/login    | {"status":"success","code":200,"response":{"token":"x...x","user":{"email":"user@user.com","subscription":""}}}        |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| patch/api/users         | status:200; body={ "status": "success","code": "200","data": { "email": "max2@company.com","subscription": "starter"}} | update the field "subscription                                |
+| get/api/users/current   | status:200; body={"status":"success","code":"200","data":{"email":"max2@company.com","subscription":"starter"}}        | get current user                                              |
+| post/api/users/logout   | status:204; empty body                                                                                                 | remove the authorization                                      |
+| post/api/users/register | status:201; body = {"status":"success","code":201,"user":{"email":"max7@company.com","subscription":"starter"}}        | create a new user                                             |
+| post/api/users/login    | {"status":"success","code":200,"response":{"token":"x...x","user":{"email":"user@user.com","subscription":""}}}        | send the token for valid user; the token is valid for one day |
+
+- if you need pagination, you have to add two parameters (page=2&limit=2) page=Number (number of page wich could be choosen with amount=limit contacts on each pages), limit=Number [by default
+  (GET /contacts?page=1&limit=20)]
+
+- you can change your user {subscription} at endpoint: PATCH /users , all you need for this action have valid auth and to choose one of the allowed values ['starter', 'pro', 'business']
+
+- would you like filter your contacts by the field {favorite}? you can do it at (GET /contacts?favorite=true) if add parameter {favorite=true} or {favorite=false} to the headers
