@@ -1,6 +1,8 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 
+const { handleError } = require("../helpers");
+
 const emailRegex = /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/;
 const phoneRegex = /\(?(\d{3})?\(?-?(\d{3})-?(\d{4})/;
 
@@ -26,6 +28,11 @@ const contactSchema = Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
   },
   { versionKey: false }
 );
@@ -45,8 +52,12 @@ const joiSchema = Joi.object({
   favorite: Joi.bool(),
 });
 
+contactSchema.post("save", handleError);
+
 const favoriteJoiSchema = Joi.object({
-  favorite: Joi.bool().required(),
+  favorite: Joi.bool().required().messages({
+    "any.required": `missing field favorite`,
+  }),
 });
 
 const Contact = model("contact", contactSchema);
