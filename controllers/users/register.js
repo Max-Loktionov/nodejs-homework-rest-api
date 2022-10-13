@@ -1,11 +1,12 @@
 const bcrypt = require("bcryptjs");
+const gravatar = require("gravatar");
 
 const { User } = require("../../models");
 const { RequestError } = require("../../helpers");
 
 const register = async (req, res, next) => {
-  const { email, password, subscription = "starter" } = req.body;
-  const user = await User.findOne({ email });
+  const { email, password, subscription } = req.body;
+  const user = await User.findOne({ email }, { s: "250" });
   if (user) {
     next(RequestError(409, `Email: ${email} in use`));
   }
@@ -14,7 +15,8 @@ const register = async (req, res, next) => {
     next(RequestError(400, `Password in body request undefined`));
   }
   const hashPassword = await bcrypt.hash(password, 10);
-  await User.create({ email, password: hashPassword });
+  const avatarURL = gravatar.url(email);
+  await User.create({ email, subscription, password: hashPassword, avatarURL });
 
   res.status(201).json({
     status: "success",

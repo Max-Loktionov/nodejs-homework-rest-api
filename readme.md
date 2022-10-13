@@ -40,17 +40,22 @@ npm lint:fix
 
 - run code validation from eslint, but with automatic fixes of simple errors.
 
+### Dependencies:
+
+---
+
+|---|---|---|---|---|---|---|---|---|---|--|---|---|
+|bcryptjs|cors|cross-env| dotenv| express| gravatar| jimp| joi| jsonwebtoken | mongoose| morgan| multer
+
 ### Branches:
 
 ---
 
 - 'main' -- it contains last version of app;
-
 - 'hw-02-express' -- use file contacts.json for storage data and express for run server;
-
 - '03-mongodb' -- contains configuration for connection to mongoDB, use mongoose for CRUD operations;
-
 - '04-auth' -- add authentication, authorization for users, you can use pagination for contacts;
+- '05-avatar' -- add avatar image for user;
 
 ### API:
 
