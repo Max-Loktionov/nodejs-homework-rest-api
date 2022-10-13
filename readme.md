@@ -44,8 +44,11 @@ npm lint:fix
 
 ---
 
-|---|---|---|---|---|---|---|---|---|---|--|---|---|
-|bcryptjs|cors|cross-env| dotenv| express| gravatar| jimp| joi| jsonwebtoken | mongoose| morgan| multer
+`#0969DA`
+| bcryptjs | cors | cross-env | dotenv | express | gravatar | jimp | joi | jsonwebtoken | mongoose | morgan | multer |
+| -------- | ---- | --------- | ------ | ------- | -------- | ---- | --- | ------------ | -------- | ------ | ------ |
+
+---
 
 ### Branches:
 
