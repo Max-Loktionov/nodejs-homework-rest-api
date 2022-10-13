@@ -42,12 +42,12 @@ npm lint:fix
 
 ### Dependencies:
 
-```
+---
 
 | bcryptjs | cors | cross-env | dotenv | express | gravatar | jimp | joi | jsonwebtoken | mongoose | morgan | multer |
 | -------- | ---- | --------- | ------ | ------- | -------- | ---- | --- | ------------ | -------- | ------ | ------ |
 
-```
+---
 
 ### Branches:
 
