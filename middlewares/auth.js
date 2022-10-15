@@ -23,7 +23,7 @@ const auth = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    if ((error.message = "Invalid signature")) {
+    if (error.message === "Invalid signature") {
       next(RequestError(401));
     }
   }

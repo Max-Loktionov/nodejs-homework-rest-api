@@ -2,23 +2,35 @@ const fs = require("fs/promises");
 const path = require("path");
 const Jimp = require("jimp");
 
+const { RequestError } = require("../../helpers");
 const { User } = require("../../models/user");
 
 const avatarsDir = path.join(__dirname, "../../", "public", "avatars");
 
 const updateAvatar = async (req, res) => {
+  const sizeImgPx = 250;
+  if (!req.file)
+    throw RequestError(
+      400,
+      "Request body has to contain field avatar and attached image, enctype=multipart/form-data"
+    );
+
   try {
     const { path: tempUpload, filename } = req.file;
 
     const { _id, email } = req.user;
-    const [extention] = filename.split(".").reverse();
-    const avatarName = `${_id}.${extention}`;
+    const extention = filename.split(".").pop();
+    const userName = email.split("@").shift();
+
+    const avatarName = `${_id}_${userName}.${extention}`;
     const resultUpload = path.join(avatarsDir, avatarName);
 
     const jimpFile = await Jimp.read(tempUpload);
-    jimpFile.resize(250, 250).write(`${resultUpload}`);
+    await jimpFile.resize(sizeImgPx, sizeImgPx).writeAsync(tempUpload);
 
-    const avatarURL = path.join("avatars", resultUpload);
+    await fs.rename(tempUpload, resultUpload);
+    const avatarURL = path.join("avatars", avatarName);
+
     await User.findByIdAndUpdate(_id, { avatarURL });
     res.json({
       email,
@@ -26,7 +38,7 @@ const updateAvatar = async (req, res) => {
     });
   } catch (error) {
     await fs.unlink(req.file.path);
-    throw error;
+    throw RequestError(400, "Error in attached image");
   }
 };
 
