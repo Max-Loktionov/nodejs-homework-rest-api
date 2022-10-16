@@ -12,8 +12,8 @@ const userSchema = Schema(
   {
     password: {
       type: String,
-      match: passwordRegex, //validation is not usefull here
-      required: [true, "Set password for user"], //validation is not usefull here
+      match: passwordRegex,
+      required: [true, "Set password for user"],
     },
     email: {
       type: String,
@@ -25,6 +25,11 @@ const userSchema = Schema(
       type: String,
       enum: ["starter", "pro", "business"],
       default: "starter",
+    },
+
+    avatarURL: {
+      type: String,
+      required: true,
     },
     token: { type: String, default: null },
   },
@@ -51,7 +56,7 @@ const joiRegisterSchema = Joi.object({
 });
 
 const joiSubscriptionSchema = Joi.object({
-  subscription: Joi.string().valid("starter", "pro", "business").required(),
+  subscription: Joi.string().required().valid("starter", "pro", "business"),
 });
 
 const User = model("user", userSchema);

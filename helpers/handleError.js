@@ -12,7 +12,6 @@ const handleError = function (error, data, next) {
       )
     );
   }
-
   next();
 };
 

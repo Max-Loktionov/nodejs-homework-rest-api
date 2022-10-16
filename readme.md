@@ -40,23 +40,30 @@ npm lint:fix
 
 - run code validation from eslint, but with automatic fixes of simple errors.
 
+### Dependencies:
+
+---
+
+| bcryptjs | cors | cross-env | dotenv | express | gravatar | jimp | joi | jsonwebtoken | mongoose | morgan | multer |
+| -------- | ---- | --------- | ------ | ------- | -------- | ---- | --- | ------------ | -------- | ------ | ------ |
+
+---
+
 ### Branches:
 
 ---
 
 - 'main' -- it contains last version of app;
-
 - 'hw-02-express' -- use file contacts.json for storage data and express for run server;
-
 - '03-mongodb' -- contains configuration for connection to mongoDB, use mongoose for CRUD operations;
-
 - '04-auth' -- add authentication, authorization for users, you can use pagination for contacts;
+- '05-avatar' -- add avatar image for user;
 
 ### API:
 
 ---
 
-**Use api on routes: /api/contacts **
+**Use api on routes: /api/contacts**
 
 - get/api/contacts
 - get/api/contacts/contactId
@@ -83,14 +90,16 @@ some action with data:
 - post/api/users/logout
 - get/api/users/current
 - patch/api/users
+- patch/api/users/avatars
 
-| route                   | response                                                                                                               | action                                                        |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| patch/api/users         | status:200; body={ "status": "success","code": "200","data": { "email": "max2@company.com","subscription": "starter"}} | update the field "subscription                                |
-| get/api/users/current   | status:200; body={"status":"success","code":"200","data":{"email":"max2@company.com","subscription":"starter"}}        | get current user                                              |
-| post/api/users/logout   | status:204; empty body                                                                                                 | remove the authorization                                      |
-| post/api/users/register | status:201; body = {"status":"success","code":201,"user":{"email":"max7@company.com","subscription":"starter"}}        | create a new user                                             |
-| post/api/users/login    | {"status":"success","code":200,"response":{"token":"x...x","user":{"email":"user@user.com","subscription":""}}}        | send the token for valid user; the token is valid for one day |
+| route                   | response                                                                                                               | action                                                                                                                                                                                                                |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| patch/api/users         | status:200; body={ "status": "success","code": "200","data": { "email": "max2@company.com","subscription": "starter"}} | update the field "subscription                                                                                                                                                                                        |
+| get/api/users/current   | status:200; body={"status":"success","code":"200","data":{"email":"max2@company.com","subscription":"starter"}}        | get current user                                                                                                                                                                                                      |
+| post/api/users/logout   | status:204; empty body                                                                                                 | remove the authorization                                                                                                                                                                                              |
+| post/api/users/register | status:201; body = {"status":"success","code":201,"user":{"email":"max7@company.com","subscription":"starter"}}        | create a new user                                                                                                                                                                                                     |
+| post/api/users/login    | {"status":"success","code":200,"response":{"token":"x...x","user":{"email":"user@user.com","subscription":""}}}        | send the token for valid user; the token is valid for one day                                                                                                                                                         |
+| patch/api/users/avatars | status:200; body ={"email": "max2@company.com", "avatarURL": avatars\\6335b75bf66dc38c54cccc36_max2.jpg"}              | changes user avatar (maxAvatarSize = 9000000; Max avatar value size (in bytes);File format should be jpeg, png, jpg, bmp; Request body has to contain field avatar and attached image; enctype="multipart/form-data") |
 
 - if you need pagination, you have to add two parameters (page=2&limit=2) page=Number (number of page wich could be choosen with amount=limit contacts on each pages), limit=Number [by default
   (GET /contacts?page=1&limit=20)]

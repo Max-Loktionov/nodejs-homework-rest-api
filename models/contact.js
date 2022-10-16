@@ -12,7 +12,6 @@ const contactSchema = Schema(
       type: String,
       required: [true, "Set name for contact"],
       unique: true,
-      index: 1,
     },
     email: {
       type: String,
@@ -22,7 +21,6 @@ const contactSchema = Schema(
       type: String,
       match: phoneRegex,
       unique: true,
-      index: 2,
     },
     favorite: {
       type: Boolean,
