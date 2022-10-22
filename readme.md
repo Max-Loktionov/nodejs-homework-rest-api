@@ -104,10 +104,7 @@ some action with data:
 | post/api/users/login                    | status:200; body={"status":"success","code":200,"response":{"token":"x...x","user":{"email":"user@user.com","subscription":""}}} | send the token for valid user; the token is valid for one day                                                                                                                                                         |
 | patch/api/users/avatars                 | status:200; body ={"email": "max2@company.com", "avatarURL": avatars\\6335b75bf66dc38c54cccc36_max2.jpg"}                        | changes user avatar (maxAvatarSize = 9000000; Max avatar value size (in bytes);File format should be jpeg, png, jpg, bmp; Request body has to contain field avatar and attached image; enctype="multipart/form-data") |
 | get/api/users/verify/:verificationToken | status:200 body={status: "success", code: 200, response: { message: "Verification successful", }}                                | check if verification token in email is correct, than make email is confirmed                                                                                                                                         |
-| post/api/users/verify                   | status:200 body={status: "success", code: 200,response: {                                                                        |
-
-message: "Verification email sent",
-},} | resend verification email for user if it`s needed |
+| post/api/users/verify                   | status:200 body={status: "success", code: 200,response: {message: "Verification email sent"}}                                    | resend verification email for user if it`s needed                                                                                                                                                                     |
 
 - if you need pagination, you have to add two parameters (page=2&limit=2) page=Number (number of page wich could be choosen with amount=limit contacts on each pages), limit=Number [by default
   (GET api/contacts?page=1&limit=20)]
