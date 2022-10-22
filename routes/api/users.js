@@ -8,6 +8,7 @@ const { ctrlWrapper } = require("../../helpers");
 const {
   joiRegisterSchema,
   joiSubscriptionSchema,
+  joiVerifyEmailSchema,
 } = require("../../models/user");
 
 router.get("/current", auth, ctrlWrapper(ctrl.getCurrent));
@@ -16,6 +17,14 @@ router.post(
   "/register",
   validation(joiRegisterSchema),
   ctrlWrapper(ctrl.register)
+);
+
+router.get("/verify/:verificationToken", ctrlWrapper(ctrl.verifyEmail));
+
+router.post(
+  "/verify",
+  validation(joiVerifyEmailSchema),
+  ctrlWrapper(ctrl.resendVerifyEmail)
 );
 
 router.post("/login", validation(joiRegisterSchema), ctrlWrapper(ctrl.login));

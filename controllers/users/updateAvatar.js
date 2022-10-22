@@ -1,10 +1,17 @@
 const fs = require("fs/promises");
 const path = require("path");
 const Jimp = require("jimp");
+const cloudinary = require("cloudinary");
 
 const { RequestError } = require("../../helpers");
 const { User } = require("../../models/user");
-
+const { CLOUD_NAME, CLOUD_KEY, CLOUD_SECRET } = process.env;
+cloudinary.config({
+  cloud_name: CLOUD_NAME,
+  api_key: CLOUD_KEY,
+  api_secret: CLOUD_SECRET,
+  secure: true,
+});
 const avatarsDir = path.join(__dirname, "../../", "public", "avatars");
 
 const updateAvatar = async (req, res) => {
